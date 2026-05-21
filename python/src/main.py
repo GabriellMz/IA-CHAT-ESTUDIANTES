@@ -1,11 +1,11 @@
 from fastapi import FastAPI, HTTPException
 from pydantic import BaseModel
 from pymongo import MongoClient
-from pyswip import Prolog  # <-- El puente real con Prolog
+from pyswip import Prolog
 import datetime
 import os
 
-app = FastAPI(title="EVEA - Bloque 3: Gestión de Interacciones Completo")
+app = FastAPI(title="EVEA - Bloque 3")
 
 # 1. Conexión a MongoDB
 client = MongoClient("mongodb://localhost:27017/")
@@ -14,12 +14,11 @@ historial_collection = db["historial_chats"]
 
 # 2. Inicializar el motor de Prolog
 prolog = Prolog()
-# Buscamos el archivo de reglas de Watanza de forma inteligente
-ruta_prolog = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../prolog/reglas.pl"))
+ruta_prolog = os.path.abspath(os.path.join(os.path.dirname(__file__), "../../Prolog/reglas.pl"))
 if os.path.exists(ruta_prolog):
     prolog.consult(ruta_prolog)
 
-# --- MODELOS ---
+# MODELOS
 class NotificationLogin(BaseModel):
     usuario_id: int
     token: str
@@ -28,7 +27,7 @@ class MensajeEstudiante(BaseModel):
     usuario_id: int
     mensaje: str
 
-# --- ENDPOINTS ---
+# ENDPOINTS
 
 @app.post("/api/integracion/login-exitoso")
 def preparar_entorno(data: NotificationLogin):
@@ -50,7 +49,6 @@ def obtener_historial(usuario_id: int):
 
 @app.post("/api/chat/enviar")
 def procesar_mensaje(data: MensajeEstudiante):
-    # Guardar mensaje del alumno
     nuevo_mensaje_alumno = {
         "remitente": "estudiante",
         "contenido": data.mensaje,
@@ -58,10 +56,8 @@ def procesar_mensaje(data: MensajeEstudiante):
     }
     historial_collection.update_one({"usuario_id": data.usuario_id}, {"$push": {"historial_mensajes": nuevo_mensaje_alumno}})
     
-    # --- CONSULTA REAL AL MOTOR DE PROLOG ---
-    # Ejemplo: Evaluamos si el alumno está apto según las reglas lógicas de Watanza
+    # CONSULTA REAL AL MOTOR DE PROLOG
     try:
-        # Se ejecuta la consulta lógica en Prolog: apto_avanzar(usuario_id, Resultado)
         consulta = list(prolog.query(f"apto_avanzar({data.usuario_id}, Resultado)"))
         if consulta:
             veredicto = str(consulta[0]["Resultado"])
@@ -70,7 +66,6 @@ def procesar_mensaje(data: MensajeEstudiante):
             veredicto = "No se encontraron registros lógicos en Prolog para este ID."
             apto = False
     except Exception:
-        # Si Watanza aún no crea el archivo, usamos un plan de respaldo amigable
         veredicto = "Sujeto a revisión de prerrequisitos (Reglas lógicas en construcción)."
         apto = True
 
