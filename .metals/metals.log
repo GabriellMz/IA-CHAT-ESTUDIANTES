@@ -1,0 +1,31 @@
+2026.05.20 20:02:15 INFO  Started: Metals version 1.6.7 in folders 'C:\Users\Cesar\Desktop\proyecto\IA-CHAT-ESTUDIANTES' for client Visual Studio Code 1.120.0.
+2026.05.20 20:02:15 INFO  Memory monitor started
+2026.05.20 20:02:16 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.05.20 20:02:26 INFO  Shutting down server
+2026.05.20 20:02:26 INFO  Memory monitor stopped
+2026.05.20 20:02:26 INFO  shutting down Metals
+2026.05.20 20:02:26 INFO  Exiting server
+2026.05.20 20:02:26 ERROR Unexpected error initializing server: 
+org.eclipse.lsp4j.jsonrpc.ResponseErrorException: Request window/showMessageRequest failed with message: Canceled
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.handleResponse(RemoteEndpoint.java:214)
+	at org.eclipse.lsp4j.jsonrpc.RemoteEndpoint.consume(RemoteEndpoint.java:198)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.handleMessage(StreamMessageProducer.java:189)
+	at org.eclipse.lsp4j.jsonrpc.json.StreamMessageProducer.listen(StreamMessageProducer.java:97)
+	at org.eclipse.lsp4j.jsonrpc.json.ConcurrentMessageProcessor.run(ConcurrentMessageProcessor.java:97)
+	at java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:545)
+	at java.util.concurrent.FutureTask.run(FutureTask.java:328)
+	at java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1090)
+	at java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:614)
+	at java.lang.Thread.run(Thread.java:1474)
+
+2026.06.02 10:04:43 INFO  Started: Metals version 1.6.7 in folders 'C:\Users\Cesar\Desktop\proyecto\IA-CHAT-ESTUDIANTES' for client Visual Studio Code 1.121.0.
+2026.06.02 10:04:43 INFO  Memory monitor started
+2026.06.02 10:04:43 WARN  Using H2 2.4.240 which is newer than the version Flyway has been verified with. The latest verified version of H2 is 2.3.232.
+2026.06.02 10:04:43 INFO  no build target found for C:\Users\Cesar\Desktop\proyecto\IA-CHAT-ESTUDIANTES\scala\src\main\scala\app\Main.scala. Using presentation compiler with project's scala-library version: 3.3.7
+2026.06.02 10:04:46 INFO  no build target found for C:\Users\Cesar\Desktop\proyecto\IA-CHAT-ESTUDIANTES\scala\src\main\scala\app\Main.scala. Using presentation compiler with project's scala-library version: 3.3.7
+2026.06.02 10:04:46 WARN  Could not find semantic tokens for: file:///C:/Users/Cesar/Desktop/proyecto/IA-CHAT-ESTUDIANTES/scala/src/main/scala/app/Main.scala
+2026.06.02 10:07:31 INFO  no build target found for C:\Users\Cesar\Desktop\proyecto\IA-CHAT-ESTUDIANTES\scala\src\main\scala\app\Main.scala. Using presentation compiler with project's scala-library version: 3.3.7
+jun. 02, 2026 10:09:30 A. M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
+jun. 02, 2026 10:11:49 A. M. org.eclipse.lsp4j.jsonrpc.services.GenericEndpoint notify
+INFO: Unsupported notification method: $/setTrace
